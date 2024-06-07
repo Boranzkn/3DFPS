@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
 
     // Gravity
-    private float gravity = -9.81f;
+    private int gravity = -15;
     private Vector3 gravityVector;
 
     // Ground Checker
@@ -25,15 +26,38 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gravityVector.y += gravity * Time.deltaTime * Time.deltaTime;
-        Vector3 movement = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward) + (gravityVector * 10);
-        characterController.Move(movement * 10 * Time.deltaTime);
+        CheckGrounded();
+        Jump();
+        AddGravity();
+        MovePlayer();
+    }
 
-        // Ground Checker
+    private void AddGravity()
+    {
+        gravityVector.y += gravity * Time.deltaTime;
+        characterController.Move(gravityVector * Time.deltaTime * 2);
+    }
+
+    private void Jump()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            gravityVector.y = Mathf.Sqrt(gravity * -10);
+        }
+    }
+
+    private void CheckGrounded()
+    {
         isGrounded = Physics.CheckSphere(groundCheckerTransform.position, groundCheckerRadius, groundLayer);
-        if (isGrounded)
+        if (isGrounded && gravityVector.y < 0)
         {
             gravityVector.y = -3;
         }
+    }
+
+    private void MovePlayer()
+    {
+        Vector3 movement = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
+        characterController.Move(movement * 10 * Time.deltaTime);
     }
 }
