@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class MouseInput : MonoBehaviour
 {
-    public Transform playerTransform;
-    [HideInInspector]
-    public float mouseSens = 300f;
-
-    float xRotation = 0;
+    [SerializeField]
+    private Transform playerTransform;
+    private float mouseSens = 300f;
+    private float xRotation = 0;
 
     // Start is called before the first frame update
     void Start()
