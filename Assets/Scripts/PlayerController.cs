@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController characterController;
+    private int health;
 
     // Gravity
     private int gravity = -15;
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            gravityVector.y = Mathf.Sqrt(gravity * -10);
+            gravityVector.y = Mathf.Sqrt(gravity * -7);
         }
     }
 
@@ -59,5 +60,17 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 movement = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
         characterController.Move(movement * 10 * Time.deltaTime);
+    }
+
+    private void GetDamage(int damage)
+    {
+        health -= damage;
+
+        CheckPlayerDied();
+    }
+
+    private void CheckPlayerDied()
+    {
+        throw new NotImplementedException();
     }
 }
