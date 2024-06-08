@@ -71,6 +71,14 @@ public class PlayerController : MonoBehaviour
 
     private void CheckPlayerDied()
     {
+        if (health <= 0)
+        {
+            PlayerDied();
+        }
+    }
+
+    private void PlayerDied()
+    {
         throw new NotImplementedException();
     }
 }
