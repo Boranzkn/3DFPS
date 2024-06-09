@@ -9,6 +9,7 @@ public class WeaponManager : MonoBehaviour
     private float range = 300f;
     private EnemyManager enemyManager;
     [SerializeField] private Camera cam;
+    [SerializeField] private ParticleSystem muzzleFlash;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Fire();
+            muzzleFlash.Play();
         }
     }
 
