@@ -10,6 +10,7 @@ public class WeaponManager : MonoBehaviour
     private EnemyManager enemyManager;
     [SerializeField] private Camera cam;
     [SerializeField] private ParticleSystem muzzleFlash;
+    [SerializeField] private GameObject impactEffect;
 
     void Start()
     {
@@ -32,6 +33,8 @@ public class WeaponManager : MonoBehaviour
 
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
         {
+            Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+
             enemyManager = hit.transform.GetComponent<EnemyManager>();
 
             if (enemyManager != null)

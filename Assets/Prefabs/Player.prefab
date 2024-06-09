@@ -364,6 +364,12 @@ PrefabInstance:
       propertyPath: muzzleFlash
       value: 
       objectReference: {fileID: 1887495064890174658}
+    - target: {fileID: 1735615738210590945, guid: c4637207e7eaf964789fd284cb95c293,
+        type: 3}
+      propertyPath: impactEffect
+      value: 
+      objectReference: {fileID: 2382354525261513974, guid: 3811dc99e5eb3de48b8c2bb7ff1ccf67,
+        type: 3}
     - target: {fileID: 5287093273534243766, guid: c4637207e7eaf964789fd284cb95c293,
         type: 3}
       propertyPath: playerTransform
