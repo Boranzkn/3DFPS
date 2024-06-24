@@ -70,3 +70,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Larger than 100mb files
+Assets/_Creepy_Cat/_3D Showroom Free/_Textures/Hard_Surface_01_Metal.tif
