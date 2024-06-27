@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         characterController.Move(movement * 10 * Time.deltaTime);
     }
 
-    private void GetDamage(int damage)
+    public void GetDamage(int damage)
     {
         health -= damage;
 

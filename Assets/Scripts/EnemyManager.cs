@@ -11,8 +11,8 @@ public class EnemyManager : MonoBehaviour
     //Navmesh
     private NavMeshAgent agent;
     private Transform playerTransform;
-    public LayerMask groundLayer;
-    public LayerMask playerLayer;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask playerLayer;
 
     //Patrolling
     private Vector3 walkPoint;
@@ -26,6 +26,8 @@ public class EnemyManager : MonoBehaviour
     //Attacking
     private float attackDelay = 1f;
     private bool isAttacking;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private GameObject projectile;
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +63,9 @@ public class EnemyManager : MonoBehaviour
 
         if (!isAttacking)
         {
+            Rigidbody rb = Instantiate(projectile, firePoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 18f, ForceMode.Impulse);
+
             isAttacking = true;
             Invoke("ResetAttack", attackDelay);
         }
