@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +20,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     private float groundCheckerRadius = 0.35f;
     private bool isGrounded = false;
+
+    // UI
+    [SerializeField] private Slider healthSlider;
+    [SerializeField] private TMP_Text healthText;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +72,8 @@ public class PlayerController : MonoBehaviour
     public void GetDamage(int damage)
     {
         health -= damage;
+        healthSlider.value = health;
+        healthText.text = health.ToString();
 
         CheckPlayerDied();
     }
@@ -74,11 +83,13 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             PlayerDied();
+            healthSlider.value = 0;
+            healthText.text = "0";
         }
     }
 
     private void PlayerDied()
     {
-        throw new NotImplementedException();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

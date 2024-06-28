@@ -21,7 +21,7 @@ public class EnemyManager : MonoBehaviour
     private bool walkPointSet;
 
     //Detecting
-    private float sightRange = 10f, attackRange = 5f;
+    private float sightRange = 20f, attackRange = 10f;
     private bool isInSightRange, isInAttackRange;
 
     //Attacking
@@ -70,7 +70,9 @@ public class EnemyManager : MonoBehaviour
     private void AttackPlayer()
     {
         agent.SetDestination(transform.position);
-        transform.LookAt(playerTransform);
+        Vector3 targetPosition = playerTransform.position;
+        targetPosition.y = 0;
+        transform.LookAt(targetPosition);
 
         if (!isAttacking)
         {
