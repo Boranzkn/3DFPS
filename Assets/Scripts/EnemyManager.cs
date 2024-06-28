@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class EnemyManager : MonoBehaviour
 {
     private int health = 100;
+    private Animator enemyAnimator;
 
     //Navmesh
     private NavMeshAgent agent;
@@ -34,6 +35,7 @@ public class EnemyManager : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         playerTransform = GameObject.Find("Player").transform;
+        enemyAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -45,14 +47,23 @@ public class EnemyManager : MonoBehaviour
         if (!isInSightRange && !isInAttackRange)
         {
             Patrolling();
+            enemyAnimator.SetBool("IsPatrollingAnim", true);
+            enemyAnimator.SetBool("IsDetectingAnim", false);
+            enemyAnimator.SetBool("IsAttackingAnim", false);
         }
         else if (isInSightRange && !isInAttackRange)
         {
             DetectPlayer();
+            enemyAnimator.SetBool("IsPatrollingAnim", false);
+            enemyAnimator.SetBool("IsDetectingAnim", true);
+            enemyAnimator.SetBool("IsAttackingAnim", false);
         }
         else if (isInSightRange && isInAttackRange)
         {
             AttackPlayer();
+            enemyAnimator.SetBool("IsPatrollingAnim", false);
+            enemyAnimator.SetBool("IsDetectingAnim", false);
+            enemyAnimator.SetBool("IsAttackingAnim", true);
         }
     }
 

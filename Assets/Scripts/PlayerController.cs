@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController characterController;
-    private int health;
+    private int health = 100;
 
     // Gravity
     private int gravity = -15;
