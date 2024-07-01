@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     // Panels
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject winPanel;
+    [SerializeField] private TMP_Text winScoreText;
     private bool isGamePaused = false;
 
     void Update()
@@ -61,5 +62,29 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
+    }
+
+    public void NextLevel() 
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1;
+    }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Level01");
+        Time.timeScale = 1;
+    }
+
+    public void WinLevel()
+    {
+        winPanel.SetActive(true);
+        winScoreText.text = scoreText.text;
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
     }
 }

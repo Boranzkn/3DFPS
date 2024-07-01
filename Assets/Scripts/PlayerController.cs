@@ -94,4 +94,12 @@ public class PlayerController : MonoBehaviour
     {
         gameManager.RestartGame();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Finisher"))
+        {
+            gameManager.WinLevel();
+        }
+    }
 }
