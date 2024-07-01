@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class EnemyManager : MonoBehaviour
 {
+    private GameManager gameManager;
+
     private int health = 100;
     private Animator enemyAnimator;
 
@@ -140,6 +142,9 @@ public class EnemyManager : MonoBehaviour
     private void EnemyDied()
     {
         Destroy(gameObject);
+
+        gameManager = FindObjectOfType<GameManager>();
+        gameManager.UpdateScore();
     }
 
     private void OnDrawGizmosSelected()
