@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    private GameManager gameManager;
+
     private CharacterController characterController;
     private int health = 100;
 
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();  
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -90,6 +92,6 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerDied()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameManager.RestartGame();
     }
 }
